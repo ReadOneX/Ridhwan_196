@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import { API_URL } from '../lib/api';
+
 interface RegisterModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -24,7 +26,7 @@ export default function RegisterModal({ isOpen, onClose, onSwitchToLogin }: Regi
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/register', {
+      const res = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })

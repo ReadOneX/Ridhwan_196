@@ -72,7 +72,7 @@ export default function CharacterModal({ isOpen, onClose, onSuccess, characterTo
     try {
       // Manual fetch because apiFetch is tuned for JSON
       const token = getAccessToken();
-      const res = await fetch(`http://localhost:5000/api${endpoint}`, {
+      const res = await fetch(`${API_URL}${endpoint}`, {
         method,
         headers: {
           'Authorization': `Bearer ${token}`

@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { setAccessToken } from '../lib/api';
+import { useRouter } from 'next/navigation';
+import { setAccessToken, API_URL } from '../lib/api';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -24,7 +24,7 @@ export default function LoginModal({ isOpen, onClose, onLoginSuccess, onSwitchTo
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
+      const res = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
