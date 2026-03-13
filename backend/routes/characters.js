@@ -44,7 +44,7 @@ router.post('/', upload.single('image'), (req, res) => {
   let imageUrl = req.body.imageUrl || ''; 
 
   if (req.file) {
-    const protocol = req.protocol;
+    const protocol = req.headers['x-forwarded-proto'] || 'http';
     const host = req.get('host');
     imageUrl = `${protocol}://${host}/uploads/${req.file.filename}`;
   }
@@ -63,7 +63,7 @@ router.put('/:id', upload.single('image'), (req, res) => {
   let imageUrl = req.body.imageUrl;
 
   if (req.file) {
-    const protocol = req.protocol;
+    const protocol = req.headers['x-forwarded-proto'] || 'http';
     const host = req.get('host');
     imageUrl = `${protocol}://${host}/uploads/${req.file.filename}`;
   }
