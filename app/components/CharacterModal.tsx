@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { apiFetch, getAccessToken } from '../lib/api';
+import { apiFetch, getAccessToken, API_URL } from '../lib/api';
 
 interface CharacterModalProps {
   isOpen: boolean;
