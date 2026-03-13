@@ -44,7 +44,9 @@ router.post('/', upload.single('image'), (req, res) => {
   let imageUrl = req.body.imageUrl || ''; 
 
   if (req.file) {
-    imageUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+    const protocol = req.protocol;
+    const host = req.get('host');
+    imageUrl = `${protocol}://${host}/uploads/${req.file.filename}`;
   }
 
   if (!name) return res.status(400).json({ error: 'Name is required' });
@@ -61,7 +63,9 @@ router.put('/:id', upload.single('image'), (req, res) => {
   let imageUrl = req.body.imageUrl;
 
   if (req.file) {
-    imageUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+    const protocol = req.protocol;
+    const host = req.get('host');
+    imageUrl = `${protocol}://${host}/uploads/${req.file.filename}`;
   }
   
   db.run(
